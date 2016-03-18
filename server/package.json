@@ -4,7 +4,8 @@
   "scripts": {
     "tsc:w": "tsc -w",
     "develop": "concurrent \"npm run tsc:w\" \"nodemon server.js\" ",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "direct": "nodemon directServer.js"
   },
   "license": "ISC",
   "dependencies": {
