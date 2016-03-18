@@ -5,7 +5,7 @@ var app = express()
 var databaseInfo = {
     database: 'movies',
     user: 'root',
-    password: '789798',
+    password: 'password',
 };
 
 app.use(function (req, res, next) {
