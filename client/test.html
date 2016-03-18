@@ -1,0 +1,56 @@
+<script type="text/javascript" src="js/libs/zoomcharts/zoomcharts.js"></script>
+
+<div id="netchart"></div>
+
+<script>
+    var nextId = 0;
+    var nc = new NetChart({
+        container: document.getElementById("netchart"),
+        area: { height: 700 },
+        style: {
+            nodeStyleFunction: nodeStyle
+        },
+        data: {
+            preloaded: {
+                nodes: [
+                    { id: "titanic", label:'Titanic', extra: {type: "movie"} },
+                    { id: "wolf", label:'The Wolf Form WallStreet', extra: {type: "movie"} },
+                    { id: "leo", label: "Leonardo DeCaprio", extra: {type: "person"}  },
+                ],
+                links: [
+                    {
+                        id: "test",
+                        from: "titanic",
+                        to: "leo",
+                        style: {
+                            fillColor: 'red',
+                        }
+                    },
+                    { from: "wolf", to: "leo" }
+                ]
+            }
+        },
+        events: {
+            onDoubleClick: function(event){
+                if (event.clickNode){
+                    for(var i = 0 ; i <3 ; i++){
+                        event.chart.addData({nodes:[{"id":"n"+nextId}], links:[{"id":"ll"+nextId, from:event.clickNode.id, to:"n"+nextId}]});
+                        nextId += 1;
+                    }
+                }
+            }
+        },
+        interaction: { selection: { lockNodesOnMove: false } }
+    });
+
+    function nodeStyle(node){
+        //node.items = [{
+        //        image: "/dvsl/data/net-chart/icons.png",
+        //        imageSlicing: [0, 0, 30, 30],
+        //        backgroundStyle: {fillColor: "red"},
+        //        px: -0.7, py: -0.7, x: 0, y: 0,
+        //    }
+        //]
+    }
+</script>
+
