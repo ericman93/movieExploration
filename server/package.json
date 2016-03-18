@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "latest",
     "gremlin": "latest",
-    "java": "latest"
+    "orientdb-js": "latest"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
