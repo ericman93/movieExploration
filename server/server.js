@@ -5,7 +5,7 @@ var app = express()
 var databaseInfo = {
     database: 'movies',
     user: 'root',
-    password: '789798',
+    password: '123456',
 };
 
 app.use(function (req, res, next) {
@@ -70,16 +70,5 @@ function addId(nodes){
         nodes[i]['id'] = nodes[i]['@rid'];
     };
 }
-
-//app.get('/search/:id', function(req, res){
-//    orientdb.connect(databaseInfo).then(function(graph){
-//        var g = graph;
-//        g.V('uniqueId', req.params.id).outE().inV().then(function(data){
-//            res.send(req.params.id);
-//        })
-//    }, function(err){
-//        res.send(err);
-//    });
-//});
 
 app.listen(1234)
