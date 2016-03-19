@@ -5,7 +5,7 @@ var app = express()
 var databaseInfo = {
     database: 'movies',
     user: 'root',
-    password: 'password',
+    password: '789798',
 };
 
 app.use(function (req, res, next) {
@@ -47,6 +47,19 @@ app.get('/explore/:type/:id', function(req, res){
         })
     }, function(err){zv 
         res.send(err);
+    });
+});
+
+app.get('/search', function(req, res){
+    console.log('sercing for ' + req.query.q)
+    orientdb.connect(databaseInfo).then(function(graph){
+        console.log('connect')
+        var g = graph;
+
+        g.V().has('title', req.query.q).then(function(result){
+            addId(result.result);
+            res.send(result.result);
+        });
     });
 });
 

@@ -4,17 +4,21 @@ import {Observable}     from 'rxjs/Observable';
 
 @Injectable()
 export class MovieService {
-    private _moviesUrl = 'http://localhost:1234/explore/';
+    private _moviesUrl = 'http://localhost:1234/';
 
     constructor(private http: Http) {
     }
 
     getMovieByName(name: string) {
+        return this.http.get(this._moviesUrl + 'search', {
+                search: 'q='+name
+            })
+            .map(res => res.json())
+            .catch(this.handleError);
     }
 
     explore(nodeId, nodeType) {
-        console.log('explore - '+ nodeType + " - " +nodeId);
-        return this.http.get(this._moviesUrl + nodeType + "/" + nodeId)
+        return this.http.get(this._moviesUrl + 'explore/' + nodeType + "/" + nodeId)
             .map(res => res.json())
             .catch(this.handleError);
     }

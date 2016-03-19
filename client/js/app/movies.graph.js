@@ -36,21 +36,6 @@ System.register(['angular2/core', './movies.service'], function(exports_1, conte
                             nodeStyleFunction: this.nodeStyle,
                             linkStyleFunction: this.edgeStyle
                         },
-                        data: {
-                            preloaded: {
-                                nodes: [
-                                    {
-                                        id: '#12:0',
-                                        uniqueId: "27205",
-                                        title: 'Inception',
-                                        type: "movie",
-                                        '@rid': '#12:0',
-                                        out_movieactor: [],
-                                        img: 'http://image.tmdb.org/t/p/w500//qmDpIHrmpJINaRKAfWQfftjCdyi.jpg'
-                                    },
-                                ]
-                            }
-                        },
                         events: {
                             // in that way i can still use the private members (StackOverflow Issue: 20627138)
                             onDoubleClick: function (event) { _this.exploreMovie(event); }
@@ -114,6 +99,20 @@ System.register(['angular2/core', './movies.service'], function(exports_1, conte
                         //}]
                         links: []
                     });
+                };
+                MovieGraph.prototype.addMovieToGarph = function (query) {
+                    var _this = this;
+                    console.log("query : " + query);
+                    this._movieService.getMovieByName(query)
+                        .subscribe(function (movies) {
+                        console.log(movies);
+                        movies.forEach(function (movie) {
+                            _this.chart.addData({
+                                nodes: [movie],
+                                links: []
+                            });
+                        });
+                    }, function (error) { return console.error(error); });
                 };
                 MovieGraph = __decorate([
                     core_1.Component({

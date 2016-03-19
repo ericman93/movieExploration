@@ -30,7 +30,7 @@ System.register(['angular2/core', './movies.graph', './movies.service'], functio
                 MoviesApp = __decorate([
                     core_1.Component({
                         selector: 'movies-app',
-                        template: '<h1>explore</h1> <movies-garph></movies-garph>',
+                        template: "<h1>explore</h1>\n               <div>\n                    <input type=\"text\" [(ngModel)]=\"query\" />\n                    <input type=\"button\" (click)=\"g.addMovieToGarph(query)\" value=\"Search\" />\n                </div>\n                <movies-garph #g></movies-garph>\n    ",
                         directives: [movies_graph_1.MovieGraph],
                         providers: [movies_service_1.MovieService]
                     }), 

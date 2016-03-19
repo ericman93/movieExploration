@@ -23,21 +23,6 @@ export class MovieGraph {
                 nodeStyleFunction: this.nodeStyle,
                 linkStyleFunction: this.edgeStyle
             },
-            data: {
-                preloaded: {
-                    nodes: [
-                        {
-                            id: '#12:0',
-                            uniqueId: "27205",
-                            title: 'Inception',
-                            type: "movie",
-                            '@rid': '#12:0',
-                            out_movieactor: [],
-                            img: 'http://image.tmdb.org/t/p/w500//qmDpIHrmpJINaRKAfWQfftjCdyi.jpg'
-                        },
-                    ]
-                }
-            },
             events: {
                 // in that way i can still use the private members (StackOverflow Issue: 20627138)
                 onDoubleClick: (event) => { this.exploreMovie(event); }
@@ -111,5 +96,23 @@ export class MovieGraph {
             //}]
             links: []
         });
+    }
+
+    addMovieToGarph(query) {
+        console.log("query : " + query);
+
+        this._movieService.getMovieByName(query)
+            .subscribe(
+            movies => {
+                console.log(movies);
+                movies.forEach((movie) => {
+                    this.chart.addData({
+                        nodes: [movie],
+                        links: []
+                    });
+                });
+            },
+            error => console.error(error)
+            );
     }
 }

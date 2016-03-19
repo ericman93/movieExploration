@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                         .catch(this.handleError);
                 };
                 MovieService.prototype.explore = function (nodeId, nodeType) {
-                    return this.http.get(this._moviesUrl + 'explore/' + nodeType + "/" + nodeId)
+                    return this.http.get(this._moviesUrl + 'explore' + nodeType + "/" + nodeId)
                         .map(function (res) { return res.json(); })
                         .catch(this.handleError);
                 };
