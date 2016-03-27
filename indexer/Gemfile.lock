@@ -1,0 +1,32 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    domain_name (0.5.20160310)
+      unf (>= 0.0.5, < 1.0.0)
+    ffi (1.9.10-x86-mingw32)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    json (1.8.3)
+    mime-types (2.99.1)
+    multi_xml (0.5.5)
+    netrc (0.11.0)
+    orientdb4r (0.5.1)
+      rest-client (~> 1.7)
+    rest-client (1.8.0-x86-mingw32)
+      ffi (~> 1.9)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2-x86-mingw32)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  httparty
+  orientdb4r

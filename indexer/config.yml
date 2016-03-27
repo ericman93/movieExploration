@@ -1,0 +1,6 @@
+movie_dal:
+  api_key: get your own themoviedb api key
+orient_db:
+  database: database
+  user: user
+  password: password

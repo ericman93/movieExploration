@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'orientdb4r'
+gem 'httparty'
+gem 'require_all'

@@ -1,0 +1,20 @@
+{
+  "name": "movies-exploraion-server",
+  "version": "0.0.1",
+  "scripts": {
+    "tsc:w": "tsc -w",
+    "develop": "concurrent \"npm run tsc:w\" \"nodemon server.js\" ",
+    "start": "nodemon server.js",
+    "direct": "nodemon directServer.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "latest",
+    "gremlin": "latest",
+    "orientdb-js": "latest"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "nodemon": "latest"
+  }
+}
