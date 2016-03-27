@@ -118,6 +118,8 @@ export class MovieGraph {
             );
     }
 
+    /* Move to seperate class */
+
     selectionChanged(event: ZoomCharts.Configuration.BaseMouseEvent, args: ZoomCharts.Configuration.NetChartChartEventArguments) {
         var oldCharts = this.overlayCharts;
         this.overlayCharts = <IDictionary<INodeCharts>>new Object(null);

@@ -115,6 +115,7 @@ System.register(['angular2/core', './movies.service'], function(exports_1, conte
                         });
                     }, function (error) { return console.error(error); });
                 };
+                /* Move to seperate class */
                 MovieGraph.prototype.selectionChanged = function (event, args) {
                     var oldCharts = this.overlayCharts;
                     this.overlayCharts = new Object(null);
