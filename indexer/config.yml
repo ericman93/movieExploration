@@ -1,6 +1,6 @@
 movie_dal:
-  api_key: get your own themoviedb api key
+  api_key: c8605a69c7676f05c91515ce4f2dc937
 orient_db:
-  database: database
-  user: user
-  password: password
+  database: movies
+  user: root
+  password: 789798

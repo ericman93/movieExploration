@@ -5,7 +5,7 @@ var app = express()
 var databaseInfo = {
     database: 'movies',
     user: 'root',
-    password: '123456',
+    password: '789798',
 };
 
 app.use(function (req, res, next) {
@@ -50,12 +50,13 @@ app.get('/explore/:type/:id', function(req, res){
     });
 });
 
+// should charater names will be included in seach?
 app.get('/search', function(req, res){
     console.log('sercing for ' + req.query.q)
     orientdb.connect(databaseInfo).then(function(graph){
         console.log('connect')
         var g = graph;
-
+        
         g.V().has('title', req.query.q).then(function(result){
             addId(result.result);
             res.send(result.result);

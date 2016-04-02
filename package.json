@@ -1,0 +1,13 @@
+{
+  "name": "movies-exploraion",
+  "version": "0.0.1",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run start",
+    "db": "cd C:\\Users\\Eric\\Downloads\\orientdb-community-2.1.12\\orientdb-community-2.1.12\\bin && server",
+    "start": "concurrent \"npm run db\" \"npm run client\" \"npm run server\" "
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0"
+  }
+}
