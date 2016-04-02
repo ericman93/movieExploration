@@ -58,19 +58,19 @@ export class MovieGraph {
         if (event.clickNode) {
             var currentMovie = event.clickNode.data;
 
+            console.log('start');
             this._movieService.explore(currentMovie.uniqueId, currentMovie.type)
                 .subscribe(
                 movies => {
                     var chart = this.chart;
                     movies.nodes.forEach(movie => {
                         var connections = movie.connections
-                            .filter(connection => {
-                                return chart.getNode(connection.in) != undefined &&
-                                       chart.getNode(connection.out) != undefined
+                            .filter(edge => {
+                                return chart.getNode(movie.type == 'movie' ? edge.in : edge.out) != undefined
                             })
                             .map(edge => {
                                 return {
-                                    'id': edge.in + "-" + edge.out,
+                                    'id': edge.role + "-" + edge.in + "-" + edge.out,
                                     'from': edge.in,
                                     'to': edge.out,
                                     'character': edge.character,
