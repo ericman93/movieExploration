@@ -68,10 +68,25 @@ System.register(['angular2/core', './movies.service'], function(exports_1, conte
                         var currentMovie = event.clickNode.data;
                         this._movieService.explore(currentMovie.uniqueId, currentMovie.type)
                             .subscribe(function (movies) {
+                            var chart = _this.chart;
                             movies.nodes.forEach(function (movie) {
+                                var connections = movie.connections
+                                    .filter(function (connection) {
+                                    return chart.getNode(connection.in) != undefined &&
+                                        chart.getNode(connection.out) != undefined;
+                                })
+                                    .map(function (edge) {
+                                    return {
+                                        'id': edge.in + "-" + edge.out,
+                                        'from': edge.in,
+                                        'to': edge.out,
+                                        'character': edge.character,
+                                        'role': edge.role
+                                    };
+                                });
                                 _this.chart.addData({
                                     nodes: [movie],
-                                    links: []
+                                    links: connections
                                 });
                             });
                             _this.chart.addData({

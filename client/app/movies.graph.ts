@@ -61,10 +61,26 @@ export class MovieGraph {
             this._movieService.explore(currentMovie.uniqueId, currentMovie.type)
                 .subscribe(
                 movies => {
-                    movies.nodes.forEach((movie) => {
+                    var chart = this.chart;
+                    movies.nodes.forEach(movie => {
+                        var connections = movie.connections
+                            .filter(connection => {
+                                return chart.getNode(connection.in) != undefined &&
+                                       chart.getNode(connection.out) != undefined
+                            })
+                            .map(edge => {
+                                return {
+                                    'id': edge.in + "-" + edge.out,
+                                    'from': edge.in,
+                                    'to': edge.out,
+                                    'character': edge.character,
+                                    'role': edge.role
+                                }
+                            });
+
                         this.chart.addData({
                             nodes: [movie],
-                            links: []
+                            links: connections
                         });
                     });
 

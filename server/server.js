@@ -37,6 +37,7 @@ app.get('/explore/:type/:id', function(req, res){
         g.V('uniqueId', req.params.id).has('type', type)[edge]()[vertex]().then(function(data){
             var nodes = data.result;
             addId(nodes);
+            setConnection(nodes, g);
 
             g.V('uniqueId', req.params.id).has('type', type)[edge]().then(function(data){
                 res.send({
@@ -64,10 +65,30 @@ app.get('/search', function(req, res){
     });
 });
 
+function setConnection(nodes, g){
+    var connection_types = {
+        movie: ['out_moviedirector', 'out_movieactor'],
+        director: ['in_moviedirector'],
+        actor: ['in_movieactor']
+    }
+
+     for (var i = nodes.length - 1; i >= 0; i--) {
+        var node = nodes[i];
+        var connections  = connection_types[node['type']].map((name) => node[name]).reduce((x,y) => x.concat(y), []);
+        node["connections"] = [];
+
+        connections.filter(connection => connection != undefined)
+                   .forEach(connection => {
+                        //node["connections"].push(connection)
+                        g.e(connection.substr(1)).then(function(edge){
+                            node["connections"].push(edge.result[0]);
+                        });
+                     });
+                    };
+}
 
 function addId(nodes){
     for (var i = nodes.length - 1; i >= 0; i--) {
-        console.log(nodes[i])
         nodes[i]['id'] = nodes[i]['@rid'];
     };
 }
